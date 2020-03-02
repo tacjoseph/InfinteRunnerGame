@@ -9,10 +9,45 @@ public class Rocket : MonoBehaviour
     public int currPosIndex = 1;
     public float t = 0;
     public float moveSpeed = 7;
+
+    public SpriteRenderer s;
+    public Color flinchColor = new Color(0.5f, 0, 0, 0);
+    public bool isAlive = true;
+    public bool isFlinching = false;
+    public int hp = 3;
+    public int score = 0;
+    public float flinchDur = 5;
+    public float ft = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        s = GetComponent<SpriteRenderer>();  
+    }
+
+    void KillPlayer()
+    {
+        s.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collide2D col)
+    {
+        if(col.gameObkect.name == "Asteroid")
+        {
+            hp = hp - 1;
+            isFlinching = true;
+            if(hp > 0)
+            {
+                isAlive = false;
+            }
+        }
+        if(col.gameObject.name == "Points")
+        {
+            score = score + 1;
+        }
+        if(!isAlive)
+        {
+            KillPlayer();
+        }
     }
 
     // Update is called once per frame
