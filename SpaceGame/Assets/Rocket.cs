@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour
 {
+    public Text health;
+    public Text points;
+
     public Vector3[] rocketPos;
     public int currPosIndex = 1;
     public float t = 0;
@@ -21,7 +24,9 @@ public class Rocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        s = GetComponent<SpriteRenderer>();  
+        s = GetComponent<SpriteRenderer>();
+        health.text = "HP: " + hp;
+        points.text = "Score: " + score;
     }
 
     void KillPlayer()
@@ -29,7 +34,7 @@ public class Rocket : MonoBehaviour
         s.enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collide2D col)
+   void OnTriggerEnter2D(Collide2D col)
     {
         if(col.gameObkect.name == "Asteroid")
         {
@@ -37,12 +42,15 @@ public class Rocket : MonoBehaviour
             isFlinching = true;
             if(hp > 0)
             {
+                hp = 0;
                 isAlive = false;
             }
+            health.text = "Hp: " + hp; 
         }
-        if(col.gameObject.name == "Points")
+        if(col.gameObject.name == "Points" && !isFliching && isAlive)
         {
             score = score + 1;
+            points.text = "Score: " + score;
         }
         if(!isAlive)
         {
@@ -53,6 +61,18 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isFliching && ft <= flichDur)
+        {
+            ft += Time.deltaTime;
+            s.color = Color.Lerp(Color.white, flinchColor, Mathf.PingPong(ft, 0.5f));
+
+        }
+        else if(ft > flinchDur)
+        {
+            ft = 0;
+            isFlinching = flase;
+        }
+
         t = Time.deltaTime * moveSpeed;
         transform.position = Vector3.Lerp(transform.position, rocketPos[currPosIndex], t);
 
