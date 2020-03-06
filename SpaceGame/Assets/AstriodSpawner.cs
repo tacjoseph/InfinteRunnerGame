@@ -9,6 +9,7 @@ public class AstriodSpawner : MonoBehaviour
     public float spawnInterval = 1;
     public float timer;
 
+    
     // Update is called once per frame
     void Update()
     {

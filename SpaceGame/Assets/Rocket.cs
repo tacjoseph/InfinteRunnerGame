@@ -21,6 +21,8 @@ public class Rocket : MonoBehaviour
     public int score = 0;
     public float flinchDur = 5;
     public float ft = 0;
+
+    
     // Start is called before the first frame update
     void Start()
     {

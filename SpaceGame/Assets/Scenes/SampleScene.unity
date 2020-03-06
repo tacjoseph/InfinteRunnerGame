@@ -393,7 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48fafd43237806f4e9088e1a63f088d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidPrefab: {fileID: 0}
+  asteroidPrefab: {fileID: 4679153369271204280, guid: c52b5fca680009b46b44f625bc2105e5,
+    type: 3}
   spawnPos:
   - {x: 30, y: 5, z: 0}
   - {x: 30, y: 0, z: 0}
