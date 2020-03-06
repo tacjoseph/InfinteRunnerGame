@@ -34,9 +34,9 @@ public class Rocket : MonoBehaviour
         s.enabled = false;
     }
 
-   void OnTriggerEnter2D(Collide2D col)
+   void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObkect.name == "Asteroid")
+        if(col.gameObject.name == "Asteroid")
         {
             hp = hp - 1;
             isFlinching = true;
@@ -47,7 +47,7 @@ public class Rocket : MonoBehaviour
             }
             health.text = "Hp: " + hp; 
         }
-        if(col.gameObject.name == "Points" && !isFliching && isAlive)
+        if(col.gameObject.name == "Points" && !isFlinching && isAlive)
         {
             score = score + 1;
             points.text = "Score: " + score;
@@ -61,7 +61,7 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isFliching && ft <= flichDur)
+        if(isFlinching && ft <= flinchDur)
         {
             ft += Time.deltaTime;
             s.color = Color.Lerp(Color.white, flinchColor, Mathf.PingPong(ft, 0.5f));
@@ -70,7 +70,7 @@ public class Rocket : MonoBehaviour
         else if(ft > flinchDur)
         {
             ft = 0;
-            isFlinching = flase;
+            isFlinching = false;
         }
 
         t = Time.deltaTime * moveSpeed;

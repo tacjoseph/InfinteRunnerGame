@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidSpawner : MonoBehaviour
+public class AstriodSpawner : MonoBehaviour
 {
     public GameObject asteroidPrefab;
     public Vector3[] spawnPos;
