@@ -7,6 +7,8 @@ public class Rocket : MonoBehaviour
 {
     public Text health;
     public Text points;
+    public AudioSource source;
+    public AudioClip Hurt;
 
     public Vector3[] rocketPos;
     public int currPosIndex = 1;
@@ -21,11 +23,13 @@ public class Rocket : MonoBehaviour
     public int score = 0;
     public float flinchDur = 5;
     public float ft = 0;
+    
 
     
     // Start is called before the first frame update
     void Start()
     {
+        source = GetComponent<AudioSource>();
         s = GetComponent<SpriteRenderer>();
         health.text = "HP: " + hp;
         points.text = "Score: " + score;
@@ -46,6 +50,7 @@ public class Rocket : MonoBehaviour
             {
                 hp = 0;
                 isAlive = false;
+                source.PlayOneShot(Hurt);
             }
             health.text = "Hp: " + hp; 
         }

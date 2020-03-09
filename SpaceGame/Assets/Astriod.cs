@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Astriod : MonoBehaviour
 {
-    public float moveSpeed = 7;
+    public float moveSpeed = 0.2f;
     public Vector3 endPos;
     // Start is called before the first frame update
     void Start()
